@@ -1,4 +1,18 @@
 package tests;
 
-public class RegistrationTests {
+import manager.ApplicationManager;
+import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
+
+public class RegistrationTests extends ApplicationManager {
+
+    @Test
+    public void registrationPositiveTest() {
+
+        new HomePage(getDriver()).clickBtnLoginHeader();
+        new LoginPage(getDriver()).typeLoginForm("testemail@example.com", "password");
+
+    }
+
 }
