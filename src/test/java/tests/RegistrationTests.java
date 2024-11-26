@@ -11,7 +11,8 @@ public class RegistrationTests extends ApplicationManager {
     public void registrationPositiveTest() {
 
         new HomePage(getDriver()).clickBtnLoginHeader();
-        new LoginPage(getDriver()).typeLoginForm("testemail@example.com", "password");
+        new LoginPage(getDriver()).typeLoginForm("testemail1@example.com", "Password123!");
+        new LoginPage(getDriver()).clickBtnRegistration();
 
     }
 
