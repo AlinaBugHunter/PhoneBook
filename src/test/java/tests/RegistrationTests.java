@@ -5,15 +5,15 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 
+import java.util.Random;
+
 public class RegistrationTests extends ApplicationManager {
 
     @Test
     public void registrationPositiveTest() {
-
+        int i = new Random().nextInt(1000);
         new HomePage(getDriver()).clickBtnLoginHeader();
-        new LoginPage(getDriver()).typeLoginForm("testemail1@example.com", "Password123!");
-        new LoginPage(getDriver()).clickBtnRegistration();
-
+        new LoginPage(getDriver()).typeRegistrationForm("testemail" + i + "@example.com", "Password123!");
     }
 
 }
