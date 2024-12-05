@@ -19,7 +19,6 @@ public class HomePage extends BasePage {
 
     public void clickBtnLoginHeader() {
         btnLogin.click();
-        pause(1);
     }
 
 }
