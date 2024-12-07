@@ -24,4 +24,11 @@ public class ContactsPage extends BasePage {
         return btnSignOut.isDisplayed();
     }
 
+    @FindBy(xpath = "//a[@href='/add']")
+    WebElement btnAdd;
+
+    public void clickBtnAdd() {
+        btnAdd.click();
+    }
+
 }
