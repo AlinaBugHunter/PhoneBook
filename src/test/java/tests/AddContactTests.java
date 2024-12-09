@@ -15,6 +15,8 @@ import java.util.Random;
 
 public class AddContactTests extends ApplicationManager {
 
+    AddContactPage addContactPage;
+
     int randomInt = new Random().nextInt(1000) + 1000;
 
     @BeforeMethod
@@ -23,6 +25,7 @@ public class AddContactTests extends ApplicationManager {
         new HomePage(getDriver()).clickBtnLoginHeader();
         new LoginPage(getDriver()).typeLoginForm(user);
         new ContactsPage(getDriver()).clickBtnAdd();
+        addContactPage = new AddContactPage(getDriver());
     }
 
     @Test
@@ -35,10 +38,9 @@ public class AddContactTests extends ApplicationManager {
                 .address("Address")
                 .description("Lorem Ipsum")
                 .build();
-        new AddContactPage(getDriver()).typeAddContactForm(user);
-        new AddContactPage(getDriver()).clickBtnSave();
-        Assert.assertTrue(new ContactsPage(getDriver()).isSignOutPresent());
-
+        addContactPage.typeAddContactForm(user);
+        addContactPage.clickBtnSave();
+        Assert.assertTrue(new ContactsPage(getDriver()).validateLastElementContactList(user));
     }
 
 }
