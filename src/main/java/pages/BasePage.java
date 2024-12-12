@@ -37,5 +37,9 @@ public class BasePage {
         }
     }
 
+    public void clickWait(WebElement element, int time){
+        new WebDriverWait(driver, time).until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+
 
 }

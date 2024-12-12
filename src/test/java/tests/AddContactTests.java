@@ -29,7 +29,7 @@ public class AddContactTests extends ApplicationManager {
         addContactPage = new AddContactPage(getDriver());
     }
 
-    @Test
+    @Test //(invocationCount = 5)
     public void addContactPositiveTest() {
         UserContactDTO user = UserContactDTO.builder()
                 .name("Test")
