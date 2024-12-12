@@ -1,11 +1,15 @@
 package pages;
 
 import dto.UserContactDTO;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AddContactPage extends BasePage {
 
@@ -32,6 +36,9 @@ public class AddContactPage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='description']")
     WebElement inputDescription;
 
+    @FindBy(xpath = "//button/b[text()='Save']")
+    WebElement btnSave;
+
     public void typeAddContactForm(UserContactDTO user) {
         inputName.sendKeys(user.getName());
         inputLastName.sendKeys(user.getLastName());
@@ -39,13 +46,19 @@ public class AddContactPage extends BasePage {
         inputEmail.sendKeys(user.getEmail());
         inputAddress.sendKeys(user.getAddress());
         inputDescription.sendKeys(user.getDescription());
+        btnSave.click();
     }
 
-    @FindBy(xpath = "//button/b[text()='Save']")
-    WebElement btnSave;
+    public boolean validateURLContacts(){
+        return validateUrl( "contacts", 5);
+    }
 
-    public void clickBtnSave() {
-        btnSave.click();
+    public String closeAlertAndReturnText() {
+        Alert alert = new WebDriverWait(driver, 5)
+                .until(ExpectedConditions.alertIsPresent());
+        String text = alert.getText();
+        alert.accept();
+        return text;
     }
 
 }
