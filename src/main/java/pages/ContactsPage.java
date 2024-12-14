@@ -27,6 +27,14 @@ public class ContactsPage extends BasePage {
     @FindBy(xpath = "//div[@class='contact-item_card__2SOIM']")
     WebElement firstElementContactList;
 
+    @FindBy(xpath = "//button[text()='Edit']")
+    WebElement btnEdit;
+
+    public void editFirstContact() {
+        firstElementContactList.click();
+        btnEdit.click();
+    }
+
     @FindBy(xpath = "//button[text()='Remove']")
     WebElement btnRemove;
 
