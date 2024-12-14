@@ -42,4 +42,31 @@ public class LoginTests extends ApplicationManager {
         Assert.assertTrue(new LoginPage(getDriver()).validateErrorMessageLoginPage("Login Failed with code 401"));
     }
 
+    @Test
+    public void loginNegativeTest_emptyPassword() {
+        UserDTO user = new UserDTO(email, "");
+        new HomePage(getDriver()).clickBtnLoginHeader();
+        new LoginPage(getDriver()).typeLoginForm(user);
+        new LoginPage(getDriver()).closeAlert();
+        Assert.assertTrue(new LoginPage(getDriver()).validateErrorMessageLoginPage("Login Failed with code 401"));
+    }
+
+    @Test
+    public void loginNegativeTest_wrongEmail() {
+        UserDTO user = new UserDTO("testemailexample.com", password); // An email is missing an at symbol
+        new HomePage(getDriver()).clickBtnLoginHeader();
+        new LoginPage(getDriver()).typeLoginForm(user);
+        new LoginPage(getDriver()).closeAlert();
+        Assert.assertTrue(new LoginPage(getDriver()).validateErrorMessageLoginPage("Login Failed with code 401"));
+    }
+
+    @Test
+    public void loginNegativeTest_wrongPassword() {
+        UserDTO user = new UserDTO(email, "Password123");
+        new HomePage(getDriver()).clickBtnLoginHeader();
+        new LoginPage(getDriver()).typeLoginForm(user);
+        new LoginPage(getDriver()).closeAlert();
+        Assert.assertTrue(new LoginPage(getDriver()).validateErrorMessageLoginPage("Login Failed with code 401"));
+    }
+
 }
