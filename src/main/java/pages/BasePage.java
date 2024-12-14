@@ -32,7 +32,7 @@ public class BasePage {
             return new WebDriverWait(driver, time).until(ExpectedConditions.urlContains(url));
         } catch (org.openqa.selenium.TimeoutException e) {
             e.printStackTrace();
-            System.out.println("created exception");
+            System.out.println("Created Exception > validateUrl()");
             return false;
         }
     }
