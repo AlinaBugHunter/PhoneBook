@@ -36,32 +36,18 @@ public class EditContactPage extends BasePage {
     WebElement btnSave;
 
     public void editContactForm(UserContactDTO user) {
-
-        inputName.click();
         inputName.clear();
         inputName.sendKeys(user.getName());
-
-        inputLastName.click();
         inputLastName.clear();
         inputLastName.sendKeys(user.getLastName());
-
-        inputPhone.click();
         inputPhone.clear();
         inputPhone.sendKeys(user.getPhoneNumber());
-
-        inputEmail.click();
         inputEmail.clear();
         inputEmail.sendKeys(user.getEmail());
-
-        inputAddress.click();
         inputAddress.clear();
         inputAddress.sendKeys(user.getAddress());
-
-        inputDescription.click();
-        inputDescription.clear();
-        inputDescription.sendKeys(user.getDescription());
-
+//      inputDescription.clear();
+//      inputDescription.sendKeys(user.getDescription());
         btnSave.click();
-
     }
 }

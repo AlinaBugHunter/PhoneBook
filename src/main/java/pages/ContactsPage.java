@@ -53,9 +53,22 @@ public class ContactsPage extends BasePage {
 
     public int quantityContacts() {
         return new WebDriverWait(driver, 10)
-                .until(ExpectedConditions
-                        .presenceOfAllElementsLocatedBy(By
-                                .xpath("//div[@class='contact-item_card__2SOIM']"))).size();
+                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='contact-item_card__2SOIM']"))).size();
+    }
+
+    @FindBy(xpath = "//div[@class='contact-item-detailed_card__50dTS']")
+    WebElement contactCard;
+
+    public boolean validateContactCard(UserContactDTO user) {
+        System.out.println(contactCard.getText());
+        new WebDriverWait(driver, 3).until(ExpectedConditions.textToBePresentInElement(contactCard, user.getName()));
+        System.out.println(contactCard.getText());
+        String cardContactText = contactCard.getText();
+        return (cardContactText.contains(user.getName())
+                && cardContactText.contains(user.getLastName())
+                && cardContactText.contains(user.getPhoneNumber())
+                && cardContactText.contains(user.getEmail())
+                && cardContactText.contains(user.getAddress()));
     }
 
     @FindBy(xpath = "//button[text()='Sign Out']")
