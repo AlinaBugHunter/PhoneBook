@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -59,6 +58,17 @@ public class AddContactPage extends BasePage {
         String text = alert.getText();
         alert.accept();
         return text;
+    }
+
+    // Method to check that the phone number contains only digits and has a length between 10 and 15 characters
+    public boolean isValidPhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("^\\d{10,15}$");
+    }
+
+    // Method to validate email considering both the local and domain parts
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        return email != null && email.matches(emailRegex);
     }
 
 }

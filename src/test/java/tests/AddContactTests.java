@@ -1,5 +1,6 @@
 package tests;
 
+import data_provider.DPContact;
 import dto.UserContactDTO;
 import dto.UserDTO;
 import manager.ApplicationManager;
@@ -97,7 +98,6 @@ public class AddContactTests extends ApplicationManager {
                 .build();
         addContactPage.typeAddContactForm(user);
         String message = addContactPage.closeAlertAndReturnText();
-        System.out.println(message);
         softAssert.assertTrue(message.contains("Phone not valid: Phone number must contain only digits! And length min 10, max 15!"));
         softAssert.assertFalse(addContactPage.validateURLContacts());
         softAssert.assertAll();
@@ -387,6 +387,60 @@ public class AddContactTests extends ApplicationManager {
                 .build();
         addContactPage.typeAddContactForm(contact);
         Assert.assertTrue(addContactPage.validateURLContacts());
+    }
+
+    @Test(dataProvider = "newContactDP", dataProviderClass = DPContact.class)
+    public void addContactDPTest(UserContactDTO user) {
+        addContactPage.typeAddContactForm(user);
+        Assert.assertTrue(new ContactsPage(getDriver()).validateLastElementContactList(user));
+    }
+
+    @Test(dataProvider = "newContactDPFile", dataProviderClass = DPContact.class)
+    public void addContactDPFileTest(UserContactDTO user) {
+        addContactPage.typeAddContactForm(user);
+        Assert.assertTrue(new ContactsPage(getDriver()).validateLastElementContactList(user));
+    }
+
+    @Test(dataProvider = "newContactDP_negativeEmptyFields", dataProviderClass = DPContact.class)
+    public void addContactDPTest_negativeEmptyFields(UserContactDTO user) {
+        addContactPage.typeAddContactForm(user);
+        if (user.getName().isEmpty()) {
+            softAssert.assertFalse(addContactPage.validateURLContacts());
+        }
+        if (user.getLastName().isEmpty()) {
+            softAssert.assertFalse(addContactPage.validateURLContacts());
+        }
+        if (user.getPhoneNumber().isEmpty()) {
+            String message = addContactPage.closeAlertAndReturnText();
+            softAssert.assertTrue(message.contains("Phone not valid: Phone number must contain only digits! And length min 10, max 15!"));
+            softAssert.assertFalse(addContactPage.validateURLContacts());
+        }
+        if (user.getEmail().isEmpty()) {
+            softAssert.assertFalse(new ContactsPage(getDriver()).validateLastElementContactList(user));
+        }
+        if (user.getAddress().isEmpty()) {
+            softAssert.assertFalse(addContactPage.validateURLContacts());
+        }
+        if (user.getDescription().isEmpty()) {
+            softAssert.assertTrue(new ContactsPage(getDriver()).validateLastElementContactList(user));
+        }
+        softAssert.assertAll();
+    }
+
+    @Test(dataProvider = "newContactDPFile_negativeInvalidData", dataProviderClass = DPContact.class)
+    public void addContactDPFileTest_negativeInvalidData(UserContactDTO user) {
+        addContactPage.typeAddContactForm(user);
+        if (!addContactPage.isValidPhoneNumber(user.getPhoneNumber())) {
+            String message = addContactPage.closeAlertAndReturnText();
+            softAssert.assertTrue(message.contains("Phone not valid: Phone number must contain only digits! And length min 10, max 15!"));
+            softAssert.assertFalse(addContactPage.validateURLContacts());
+        }
+        if (!addContactPage.isValidEmail(user.getEmail())) {
+            String message = addContactPage.closeAlertAndReturnText();
+            softAssert.assertTrue(message.contains("Email not valid: must be a well-formed email address"));
+            softAssert.assertFalse(addContactPage.validateURLContacts());
+        }
+        softAssert.assertAll();
     }
 
 }
