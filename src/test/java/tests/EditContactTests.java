@@ -17,8 +17,8 @@ import static utils.RandomUtils.*;
 
 public class EditContactTests extends ApplicationManager {
 
-    EditContactPage editContactPage;
     ContactsPage contactsPage;
+    EditContactPage editContactPage;
     SoftAssert softAssert = new SoftAssert();
 
     @BeforeMethod
@@ -52,7 +52,7 @@ public class EditContactTests extends ApplicationManager {
     }
 
     @Test
-    public void editContactPositiveTest1() {
+    public void editContactPositiveTest_WODescription() {
         UserContactDTO user = UserContactDTO.builder()
                 .name(generateString(7))
                 .lastName(generateString(11))
@@ -64,16 +64,28 @@ public class EditContactTests extends ApplicationManager {
         Assert.assertTrue(contactsPage.validateContactCard(user));
     }
 
-    @Test(dataProvider = "newContactDP", dataProviderClass = DPContact.class)
+    @Test(dataProvider = "contactDP", dataProviderClass = DPContact.class)
     public void editContactTestDP(UserContactDTO user) {
         editContactPage.editContactForm(user);
         Assert.assertTrue(contactsPage.validateContactCard(user));
     }
 
-    @Test(dataProvider = "newContactDPFile", dataProviderClass = DPContact.class)
+    @Test(dataProvider = "contactDPFile", dataProviderClass = DPContact.class)
     public void editContactTestDPFile(UserContactDTO user) {
         editContactPage.editContactForm(user);
-        Assert.assertTrue(new ContactsPage(getDriver()).validateContactCard(user));
+        Assert.assertTrue(contactsPage.validateContactCard(user));
+    }
+
+    @Test(dataProvider = "contactDP_negativeEmptyFields", dataProviderClass = DPContact.class)
+    public void editContactTestDP_negativeEmptyFields(UserContactDTO user) {
+        editContactPage.editContactForm(user);
+        Assert.assertTrue(editContactPage.btnSaveDisabled());
+    }
+
+    @Test(dataProvider = "contactDPFile_negativeInvalidData", dataProviderClass = DPContact.class)
+    public void editContactTest_negativeInvalidData(UserContactDTO user) {
+        editContactPage.editContactForm(user);
+        Assert.assertTrue(editContactPage.btnSaveDisabled());
     }
 
 }

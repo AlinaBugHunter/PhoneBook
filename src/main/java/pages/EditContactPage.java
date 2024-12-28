@@ -48,6 +48,14 @@ public class EditContactPage extends BasePage {
         inputAddress.sendKeys(user.getAddress());
 //      inputDescription.clear();
 //      inputDescription.sendKeys(user.getDescription());
+        clickBtnSave();
+    }
+
+    public void clickBtnSave() {
         btnSave.click();
+    }
+
+    public boolean btnSaveDisabled() {
+        return !btnSave.isEnabled();
     }
 }

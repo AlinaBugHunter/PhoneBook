@@ -389,19 +389,19 @@ public class AddContactTests extends ApplicationManager {
         Assert.assertTrue(addContactPage.validateURLContacts());
     }
 
-    @Test(dataProvider = "newContactDP", dataProviderClass = DPContact.class)
+    @Test(dataProvider = "contactDP", dataProviderClass = DPContact.class)
     public void addContactDPTest(UserContactDTO user) {
         addContactPage.typeAddContactForm(user);
         Assert.assertTrue(new ContactsPage(getDriver()).validateLastElementContactList(user));
     }
 
-    @Test(dataProvider = "newContactDPFile", dataProviderClass = DPContact.class)
+    @Test(dataProvider = "contactDPFile", dataProviderClass = DPContact.class)
     public void addContactDPFileTest(UserContactDTO user) {
         addContactPage.typeAddContactForm(user);
         Assert.assertTrue(new ContactsPage(getDriver()).validateLastElementContactList(user));
     }
 
-    @Test(dataProvider = "newContactDP_negativeEmptyFields", dataProviderClass = DPContact.class)
+    @Test(dataProvider = "contactDP_negativeEmptyFields", dataProviderClass = DPContact.class)
     public void addContactDPTest_negativeEmptyFields(UserContactDTO user) {
         addContactPage.typeAddContactForm(user);
         if (user.getName().isEmpty()) {
@@ -427,7 +427,7 @@ public class AddContactTests extends ApplicationManager {
         softAssert.assertAll();
     }
 
-    @Test(dataProvider = "newContactDPFile_negativeInvalidData", dataProviderClass = DPContact.class)
+    @Test(dataProvider = "contactDPFile_negativeInvalidData", dataProviderClass = DPContact.class)
     public void addContactDPFileTest_negativeInvalidData(UserContactDTO user) {
         addContactPage.typeAddContactForm(user);
         if (!addContactPage.isValidPhoneNumber(user.getPhoneNumber())) {

@@ -16,7 +16,7 @@ import static utils.RandomUtils.generateString;
 public class DPContact {
 
     @DataProvider
-    public UserContactDTO[] newContactDP() {
+    public UserContactDTO[] contactDP() {
 
         UserContactDTO user1 = UserContactDTO.builder()
                 .name(generateString(7))
@@ -41,7 +41,7 @@ public class DPContact {
     }
 
     @DataProvider
-    public Iterator<UserContactDTO> newContactDPFile() {
+    public Iterator<UserContactDTO> contactDPFile() {
 
         List<UserContactDTO> contactList = new ArrayList<>();
         BufferedReader bufferedReader;
@@ -70,7 +70,7 @@ public class DPContact {
     }
 
     @DataProvider
-    public UserContactDTO[] newContactDP_negativeEmptyFields() {
+    public UserContactDTO[] contactDP_negativeEmptyFields() {
 
         UserContactDTO user1 = UserContactDTO.builder()
                 .name("")
@@ -131,7 +131,7 @@ public class DPContact {
     }
 
     @DataProvider
-    public Iterator<UserContactDTO> newContactDPFile_negativeInvalidData() {
+    public Iterator<UserContactDTO> contactDPFile_negativeInvalidData() {
 
         List<UserContactDTO> contactList = new ArrayList<>();
         BufferedReader bufferedReader;
