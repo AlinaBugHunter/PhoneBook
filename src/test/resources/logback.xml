@@ -1,0 +1,31 @@
+<configuration>
+
+    <!-- Insert the current time formatted as "yyyyMMdd'T'HHmmss" under
+       the key "bySecond" into the logger context. This value will be
+       available to all subsequent configuration elements. -->
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+
+    <!-- console output -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- input to file -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>test_logs/log-${bySecond}.log</file>
+        <maxHistory>2</maxHistory>  <!-- keep log file 2 days -->
+        <totalSizeCap>5GB</totalSizeCap> <!-- max total size 5 gb -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- logging levels: off/error/warning/info/debug/server/all -->
+    <root level="info">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

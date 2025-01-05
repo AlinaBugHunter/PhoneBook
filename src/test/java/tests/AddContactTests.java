@@ -6,14 +6,20 @@ import dto.UserDTO;
 import manager.ApplicationManager;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.AddContactPage;
 import pages.ContactsPage;
 import pages.HomePage;
 import pages.LoginPage;
+import utils.TestNGListener;
 
 import java.util.Random;
+
+import static utils.PropertiesReader.*;
+
+@Listeners(TestNGListener.class)
 
 public class AddContactTests extends ApplicationManager {
 
@@ -23,7 +29,8 @@ public class AddContactTests extends ApplicationManager {
 
     @BeforeMethod
     public void setUpPreconditions() {
-        UserDTO user = new UserDTO("testemail@example.com", "Password123!");
+        UserDTO user = new UserDTO(getProperty("login.properties", "email"),
+                                   getProperty("login.properties", "password"));
         new HomePage(getDriver()).clickBtnLoginHeader();
         new LoginPage(getDriver()).typeLoginForm(user);
         new ContactsPage(getDriver()).clickBtnAdd();
