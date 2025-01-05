@@ -3,7 +3,7 @@ package dto;
 public class UserDTO {
 
     private String email;
-    private  String password;
+    private String password;
 
     public UserDTO(String email, String password) {
         this.email = email;

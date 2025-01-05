@@ -34,7 +34,7 @@ public class WDListener extends AbstractWebDriverEventListener {
     @Override
     public void afterClickOn(WebElement element, WebDriver driver) {
         super.afterClickOn(element, driver);
-        logger.info("Click on Element -> " + element.getTagName());
+        logger.info("Click on Element -> ");
     }
 
     @Override

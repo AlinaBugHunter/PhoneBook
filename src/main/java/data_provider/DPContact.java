@@ -36,7 +36,7 @@ public class DPContact {
                 .description(generateString(10))
                 .build();
 
-        return new UserContactDTO[] { user1, user2 };
+        return new UserContactDTO[]{user1, user2};
 
     }
 
@@ -126,7 +126,7 @@ public class DPContact {
                 .description("")
                 .build();
 
-        return new UserContactDTO[] { user1, user2, user3, user4, user5, user6 };
+        return new UserContactDTO[]{user1, user2, user3, user4, user5, user6};
 
     }
 

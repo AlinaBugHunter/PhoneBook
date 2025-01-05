@@ -32,7 +32,7 @@ public class AddContactTests extends ApplicationManager {
     @BeforeMethod
     public void setUpPreconditions() {
         UserDTO user = new UserDTO(getProperty("login.properties", "email"),
-                                   getProperty("login.properties", "password"));
+                getProperty("login.properties", "password"));
         new HomePage(getDriver()).clickBtnLoginHeader();
         new LoginPage(getDriver()).typeLoginForm(user);
         new ContactsPage(getDriver()).clickBtnAdd();
@@ -333,7 +333,7 @@ public class AddContactTests extends ApplicationManager {
     }
 
     @Test
-    public void addNewContactNegativeTest_wrongEmail(){
+    public void addNewContactNegativeTest_wrongEmail() {
         UserContactDTO contact = UserContactDTO.builder()
                 .name("Test")
                 .lastName("Test")
@@ -352,7 +352,7 @@ public class AddContactTests extends ApplicationManager {
     // TODO: Create a Bug Report
     // It is possible to submit a form with an invalid email if the domain is incorrect
     @Test
-    public void addNewContactNegativeTest_wrongEmail1(){
+    public void addNewContactNegativeTest_wrongEmail1() {
         UserContactDTO contact = UserContactDTO.builder()
                 .name("Test")
                 .lastName("Test")
@@ -369,7 +369,7 @@ public class AddContactTests extends ApplicationManager {
     }
 
     @Test
-    public void addNewContactNegativeTest_wrongEmail2(){
+    public void addNewContactNegativeTest_wrongEmail2() {
         UserContactDTO contact = UserContactDTO.builder()
                 .name("Test")
                 .lastName("Test")
@@ -386,12 +386,12 @@ public class AddContactTests extends ApplicationManager {
     }
 
     @Test
-    public void addNewContactNegativeTest_wrongAddress(){
+    public void addNewContactNegativeTest_wrongAddress() {
         UserContactDTO contact = UserContactDTO.builder()
                 .name("Test")
                 .lastName("Test")
                 .phoneNumber("05365362782")
-                .email("test" + randomInt +"@example.com")
+                .email("test" + randomInt + "@example.com")
                 .address("@%^&*!") // SUGGESTION: The address field can't include only special symbols
                 .description("Test")
                 .build();

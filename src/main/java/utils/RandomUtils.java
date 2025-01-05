@@ -18,7 +18,7 @@ public class RandomUtils {
     }
 
     public static String generateEmail(int length) {
-        String[] domains = { "gmail.com", "mail.ru", "yandex.ru", "yahoo.com"};
+        String[] domains = {"gmail.com", "mail.ru", "yandex.ru", "yahoo.com"};
         String domain = domains[random.nextInt(domains.length)];
         return (generateString(length) + "@" + domain);
     }

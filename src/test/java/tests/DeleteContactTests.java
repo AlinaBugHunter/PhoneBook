@@ -32,7 +32,7 @@ public class DeleteContactTests extends ApplicationManager {
         contactsPage.deleteFirstContact();
         int quantityAfterDelete = contactsPage.quantityContacts();
         System.out.println("Quantity after delete: " + quantityAfterDelete);
-        Assert.assertEquals(quantityBeforeDelete-1, quantityAfterDelete);
+        Assert.assertEquals(quantityBeforeDelete - 1, quantityAfterDelete);
     }
 
 }

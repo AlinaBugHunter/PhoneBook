@@ -24,8 +24,8 @@
 
     <!-- logging levels: off/error/warning/info/debug/server/all -->
     <root level="info">
-        <appender-ref ref="FILE" />
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
     </root>
 
 </configuration>

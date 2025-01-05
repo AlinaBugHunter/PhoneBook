@@ -11,10 +11,6 @@ import java.util.Date;
 
 public class TakeScreenShot {
 
-    public static void main(String[] args) {
-
-    }
-
     private static String createFileName() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         Date date = new Date(System.currentTimeMillis());

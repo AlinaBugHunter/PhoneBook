@@ -48,8 +48,8 @@ public class AddContactPage extends BasePage {
         btnSave.click();
     }
 
-    public boolean validateURLContacts(){
-        return validateUrl( "contacts", 5);
+    public boolean validateURLContacts() {
+        return validateUrl("contacts", 5);
     }
 
     public String closeAlertAndReturnText() {
