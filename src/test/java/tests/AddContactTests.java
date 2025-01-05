@@ -4,6 +4,7 @@ import data_provider.DPContact;
 import dto.UserContactDTO;
 import dto.UserDTO;
 import manager.ApplicationManager;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -18,6 +19,7 @@ import utils.TestNGListener;
 import java.util.Random;
 
 import static utils.PropertiesReader.*;
+import static utils.TakeScreenShot.*;
 
 @Listeners(TestNGListener.class)
 
@@ -48,6 +50,7 @@ public class AddContactTests extends ApplicationManager {
                 .description("Lorem Ipsum")
                 .build();
         addContactPage.typeAddContactForm(user);
+        takeScreenShot((TakesScreenshot) getDriver());
         Assert.assertTrue(new ContactsPage(getDriver()).validateLastElementContactList(user));
     }
 
