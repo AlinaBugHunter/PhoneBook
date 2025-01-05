@@ -2,6 +2,7 @@ package tests;
 
 import dto.UserDTO;
 import manager.ApplicationManager;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -12,6 +13,7 @@ import pages.LoginPage;
 import utils.TestNGListener;
 
 import java.util.Random;
+import static utils.TakeScreenShot.*;
 
 @Listeners(TestNGListener.class)
 
@@ -43,6 +45,7 @@ public class LoginTests extends ApplicationManager {
         new HomePage(getDriver()).clickBtnLoginHeader();
         new LoginPage(getDriver()).typeLoginForm(user);
         new LoginPage(getDriver()).closeAlert();
+        takeScreenShot((TakesScreenshot) getDriver());
         Assert.assertTrue(new LoginPage(getDriver()).validateErrorMessageLoginPage("Login Failed with code 401"));
     }
 
