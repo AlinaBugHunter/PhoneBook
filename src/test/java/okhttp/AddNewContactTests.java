@@ -35,7 +35,7 @@ public class AddNewContactTests implements BaseAPI {
                 System.out.println("Login failed" + response.code());
             }
         } catch (IOException e) {
-            System.out.println("Crated Exception login()");
+            System.out.println("Created Exception login()");
             throw new RuntimeException(e);
         }
     }
@@ -54,7 +54,7 @@ public class AddNewContactTests implements BaseAPI {
 
         RequestBody requestBody = RequestBody.create(GSON.toJson(userContactDTO), JSON);
         Request request = new Request.Builder()
-                .url(BASE_URL + ADD_NEW_CONTACT)
+                .url(BASE_URL + CONTACT)
                 .addHeader("Authorization", tokenDTO.getToken())
                 .post(requestBody)
                 .build();
