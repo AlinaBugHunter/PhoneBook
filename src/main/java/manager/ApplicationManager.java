@@ -15,18 +15,18 @@ public class ApplicationManager {
         return driver;
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         driver = new EventFiringWebDriver(new ChromeDriver());
         driver.manage().window().maximize();
         driver.register(new WDListener());
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
 }

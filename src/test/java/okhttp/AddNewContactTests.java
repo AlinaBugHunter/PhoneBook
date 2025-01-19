@@ -20,7 +20,7 @@ public class AddNewContactTests implements BaseAPI {
 
     TokenDTO tokenDTO;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void login() {
         UserDTOLombok userDTOLombok = UserDTOLombok.builder()
                 .username("testemail@example.com")
@@ -40,7 +40,7 @@ public class AddNewContactTests implements BaseAPI {
         }
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void addNewContact() {
 
         UserContactDTO userContactDTO = UserContactDTO.builder()

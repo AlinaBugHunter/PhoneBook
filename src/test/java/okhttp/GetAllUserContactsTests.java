@@ -17,7 +17,7 @@ public class GetAllUserContactsTests implements BaseAPI {
 
     TokenDTO tokenDTO;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void login() {
         UserDTOLombok userDTOLombok = UserDTOLombok.builder()
                 .username("testemail@example.com")
@@ -37,7 +37,7 @@ public class GetAllUserContactsTests implements BaseAPI {
         }
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void getAllUserContacts() {
 
         Request request = new Request.Builder()
